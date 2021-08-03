@@ -7,7 +7,18 @@ app.config['DEBUG'] = True
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        pass
+        guess =request.form['guess']
+        if guess < magic_number:
+            low_value = guess
+            message = f"(guess) is too low!"
+        elif guess > magic_number:
+            high_value = guess
+            message = f"(guess) is too high!"
+        elif guess == magic_number:
+            message = f"Congratulation (guess) is correct!"
+        else:    
+            message = "Please enter a valid input"
+        still_guessing = True
     else:
         low_value = 1
         high_value = 50
